@@ -9,9 +9,13 @@ AUTHORS: Noah Keck
 
 INSTRUCTIONS:
 
-    Download Greenfoot platform from www.greenfoot.org/download
-    then download this repository.
+    Download and install the Greenfoot platform from https://www.greenfoot.org/download/
+    Then download this repository.
     Open the project.greenfoot file.
+    Press the run button to start the game.
+    
+    Alternatively, download and install the java software from https://java.com/en/download/
+    Then download and open the Minesweeper.jar file.
     Press the run button to start the game.
 
 HOW TO PLAY:
