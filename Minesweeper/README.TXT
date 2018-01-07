@@ -9,12 +9,12 @@ PURPOSE OF PROJECT: Create a similar version toMicrosoft Minesweeper in Java/Gre
 VERSION: v0.2
 DATE: 1/6/2018
 AUTHORS: Noah Keck
-USER INSTRUCTIONS: 
+USER INSTRUCTIONS:
 
-Download Greenfoot platform from www.greenfoot.org/download
-
+Open the project.greenfoot file.
 Press the run button.
 
+HOW TO PLAY:
 Left click on untouched squares to reveal what's underneath. 
 The square is either blank, has the number of surrounding mines, or is a mine.
 Right click on untouched squares to flag them as a suspected mine.
