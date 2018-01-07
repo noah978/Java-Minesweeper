@@ -7,7 +7,7 @@ DATE: 1/6/2018
 
 AUTHORS: Noah Keck
 
-INSTRUCTIONS:
+### INSTRUCTIONS:
 
     Download and install the Greenfoot platform from https://www.greenfoot.org/download/
     Then download this repository.
@@ -18,7 +18,7 @@ INSTRUCTIONS:
     Then download and open the Minesweeper.jar file.
     Press the run button to start the game.
 
-HOW TO PLAY:
+### HOW TO PLAY:
 
     Left click on untouched squares to reveal what's underneath. 
     The square is either blank, has the number of surrounding mines, or is a mine.
