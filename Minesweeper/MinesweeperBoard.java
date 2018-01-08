@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Write a description of class MyWorld here.
  * 
  * @Noah Keck
- * @v1.0.1
+ * @v1.0.2
  * @1/7/2018
  */
 public class MinesweeperBoard extends World
@@ -44,15 +44,24 @@ public class MinesweeperBoard extends World
     }
     public void act()
     {
-        
+        if (playGame)
+            checkWin();
+        if (Greenfoot.isKeyDown("space"))
+            reset();
+    }
+    public void reset()
+    {
+        CreateCells();
+        GenerateMines();
+        playGame = true;
     }
     private void LoadContent()
     {
-        GraySquare= new GreenfootImage("GreySquareNormal.png");
-        ClickedSquare= new GreenfootImage("DepressedGraySquare.png");
-        RedMine= new GreenfootImage("RedMine.png");
-        Flagged= new GreenfootImage("FlaggedSquare.png");
-        Mine= new GreenfootImage("MineSquare.png");
+        GraySquare=new GreenfootImage("GreySquareNormal.png");
+        ClickedSquare=new GreenfootImage("DepressedGraySquare.png");
+        RedMine=new GreenfootImage("RedMine.png");
+        Flagged=new GreenfootImage("FlaggedSquare.png");
+        Mine=new GreenfootImage("MineSquare.png");
         DefusedMine= new GreenfootImage("NotMine.png");
         OneSquare=new GreenfootImage("1Square.png");
         TwoSquare=new GreenfootImage("2Square.png");
@@ -117,6 +126,20 @@ public class MinesweeperBoard extends World
                     delay(1);
                 }
             }
+        }
+    }
+    public void checkWin()
+    {
+        boolean win = true;
+        for (ArrayList<Cell> cellArray : cells)
+            for (Cell temp : cellArray)
+                if (temp.cellType.equals("mine"))
+                    win = false;
+        if (win){
+            playGame = false;
+            revealMines();
+            showText("Great Game!", (width/2), (height/2));
+            stop();
         }
     }
     public void GameOver()
