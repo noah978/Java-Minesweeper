@@ -7,8 +7,8 @@ import java.util.ArrayList;
  * Write a description of class MyWorld here.
  * 
  * @Noah Keck
- * @v1.0
- * @1/6/2018
+ * @v1.0.1
+ * @1/7/2018
  */
 public class MinesweeperBoard extends World
 {
@@ -97,6 +97,7 @@ public class MinesweeperBoard extends World
             revealZeros( x-1, y+1 );
         }
         else if (temp.cellType.equals("normal")){
+            temp.setCell("clicked");
             temp.assignNumberImage(temp.findPublicNumber());
             return;
         }
