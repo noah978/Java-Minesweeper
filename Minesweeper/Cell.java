@@ -5,8 +5,8 @@ import java.util.List;
  * Write a description of class Cells here.
  * 
  * @Noah Keck
- * @v1.0.2
- * @1/7/2018
+ * @v1.1
+ * @1/8/2018
  */
 public class Cell extends Actor
 {

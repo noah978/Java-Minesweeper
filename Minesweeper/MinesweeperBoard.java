@@ -7,8 +7,8 @@ import java.util.ArrayList;
  * Write a description of class MyWorld here.
  * 
  * @Noah Keck
- * @v1.0.2
- * @1/7/2018
+ * @v1.1
+ * @1/8/2018
  */
 public class MinesweeperBoard extends World
 {
@@ -34,8 +34,8 @@ public class MinesweeperBoard extends World
     
     public MinesweeperBoard()
     {    
-        super(60, 30, 16);
-        width=60;
+        super(30, 30, 16);
+        width=30;
         height=30;
         LoadContent();
         CreateCells();
@@ -51,6 +51,8 @@ public class MinesweeperBoard extends World
     }
     public void reset()
     {
+        removeObjects(getObjects(Cell.class));
+        
         CreateCells();
         GenerateMines();
         playGame = true;
@@ -74,23 +76,23 @@ public class MinesweeperBoard extends World
     }
     private void GenerateMines()
     {
-        for (int x=0; x<=((width*height)/8); x++)
-            cells.get(getRandomNumber(width+1)).get(getRandomNumber(height+1)).setCell("mine");
+        for (int x=0; x<((width*height)/8); x++)
+            cells.get(getRandomNumber(width)).get(getRandomNumber(height)).setCell("mine");
     }
     private void CreateCells()
     {
         cells = new ArrayList<ArrayList<Cell>>();
-        while (cells.size() <= width)
+        while (cells.size() < width)
             cells.add(new ArrayList<Cell>());
-        for (int x=0; x<=60; x++){
-            for (int y=0; y<=30; y++){
+        for (int x=0; x<width; x++){
+            for (int y=0; y<height; y++){
                 cells.get(x).add(new Cell());
                 addObject(cells.get(x).get(y), x, y);
             }
         }
     }
     public void revealZeros(int x, int y) {
-        if (x < 0 || x > width || y < 0 || y > height)
+        if (x < 0 || x > width-1 || y < 0 || y > height-1)
             return; // check for bounds
         Cell temp = cells.get(x).get(y);
         if (temp.findPublicNumber() == 0 && temp.cellType.equals("normal")) {
