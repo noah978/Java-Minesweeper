@@ -30,17 +30,18 @@ public class MinesweeperBoard extends World
     private int width;
     private int height;
     private ArrayList<ArrayList<Cell>> cells;
-    public boolean playGame;
+    public boolean playGame, isBlack;
     
     public MinesweeperBoard()
     {    
         super(30, 30, 16);
         width=30;
         height=30;
+        isBlack=true;
         LoadContent();
         CreateCells();
         GenerateMines();
-        playGame = true;
+        playGame=true;
     }
     public void act()
     {
@@ -52,27 +53,45 @@ public class MinesweeperBoard extends World
     public void reset()
     {
         removeObjects(getObjects(Cell.class));
-        
+        //remove words
         CreateCells();
         GenerateMines();
-        playGame = true;
+        playGame=true;
     }
     private void LoadContent()
     {
-        GraySquare=new GreenfootImage("GreySquareNormal.png");
-        ClickedSquare=new GreenfootImage("DepressedGraySquare.png");
-        RedMine=new GreenfootImage("RedMine.png");
-        Flagged=new GreenfootImage("FlaggedSquare.png");
-        Mine=new GreenfootImage("MineSquare.png");
-        DefusedMine= new GreenfootImage("NotMine.png");
-        OneSquare=new GreenfootImage("1Square.png");
-        TwoSquare=new GreenfootImage("2Square.png");
-        ThreeSquare=new GreenfootImage("3Square.png");
-        FourSquare=new GreenfootImage("4Square.png");
-        FiveSquare=new GreenfootImage("5Square.png");
-        SixSquare=new GreenfootImage("6Square.png");
-        SevenSquare=new GreenfootImage("7Square.png");
-        EightSquare=new GreenfootImage("8Square.png");
+        if (isBlack){
+            GraySquare=new GreenfootImage("BW-GraySquareNormal.png");
+            ClickedSquare=new GreenfootImage("BW-DepressedGraySquare.png");
+            RedMine=new GreenfootImage("BW-RedMine.png");
+            Flagged=new GreenfootImage("BW-FlaggedSquare.png");
+            Mine=new GreenfootImage("BW-MineSquare.png");
+            DefusedMine= new GreenfootImage("BW-NotMine.png");
+            OneSquare=new GreenfootImage("BW-1Square.png");
+            TwoSquare=new GreenfootImage("BW-2Square.png");
+            ThreeSquare=new GreenfootImage("BW-3Square.png");
+            FourSquare=new GreenfootImage("BW-4Square.png");
+            FiveSquare=new GreenfootImage("BW-5Square.png");
+            SixSquare=new GreenfootImage("BW-6Square.png");
+            SevenSquare=new GreenfootImage("BW-7Square.png");
+            EightSquare=new GreenfootImage("BW-8Square.png");
+        }
+        else{
+            GraySquare=new GreenfootImage("GraySquareNormal.png");
+            ClickedSquare=new GreenfootImage("DepressedGraySquare.png");
+            RedMine=new GreenfootImage("RedMine.png");
+            Flagged=new GreenfootImage("FlaggedSquare.png");
+            Mine=new GreenfootImage("MineSquare.png");
+            DefusedMine= new GreenfootImage("NotMine.png");
+            OneSquare=new GreenfootImage("1Square.png");
+            TwoSquare=new GreenfootImage("2Square.png");
+            ThreeSquare=new GreenfootImage("3Square.png");
+            FourSquare=new GreenfootImage("4Square.png");
+            FiveSquare=new GreenfootImage("5Square.png");
+            SixSquare=new GreenfootImage("6Square.png");
+            SevenSquare=new GreenfootImage("7Square.png");
+            EightSquare=new GreenfootImage("8Square.png");
+        }
     }
     private void GenerateMines()
     {
