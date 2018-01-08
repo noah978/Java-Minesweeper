@@ -1,7 +1,7 @@
 # Java-Minesweeper
 Classic game of Minesweeper created in Java using Greenfoot.
 
-VERSION: v0.2
+VERSION: v1.0.1
 
 DATE: 1/6/2018
 
