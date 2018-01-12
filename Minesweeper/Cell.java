@@ -1,11 +1,11 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 import java.util.List;
 
 /**
  * Write a description of class Cells here.
  * 
  * @Noah Keck
- * @v1.2
+ * @v1.3
  * @1/11/2018
  */
 public class Cell extends Actor

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Write a description of class MyWorld here.
  * 
  * @Noah Keck
- * @v1.2
+ * @v1.3
  * @1/11/2018
  */
 public class MinesweeperBoard extends World
@@ -32,17 +32,21 @@ public class MinesweeperBoard extends World
     private Label title;
     public boolean playGame, isBlack;
     /**
-     * In order to create a square field, the height needs to be equivalent to the width + title offset
+     * The default values for the game board are stored in this constructor.
      */
     public MinesweeperBoard()
     {    
-        super(20, 24, 16);
-        titleOffset=4;
-        width=this.getWidth();
-        height=this.getHeight()-titleOffset;
+        this(20, 20, 4);
+    }
+    public MinesweeperBoard(int width, int height, int offset)
+    {
+        super(width, height+offset, 16);
+        titleOffset=offset;
+        this.width=width;
+        this.height=height;
         
-        title = new Label("Welcome to Minesweeper", width*3/2);
-        addObject(title, width/2, titleOffset - 3);
+        title=new Label("Welcome to Minesweeper", width*3/2);
+        addObject(title, width/2, titleOffset/2-1);
         isBlack=false;
         
         LoadContent();
@@ -54,6 +58,8 @@ public class MinesweeperBoard extends World
     {
         if (playGame)
             checkWin();
+        if (isKeyDown("enter"))
+            newGameBoard();
         if (isKeyDown("space"))
             reset();
         if (isKeyDown("c")){
@@ -67,10 +73,37 @@ public class MinesweeperBoard extends World
             reset();
         }
     }
+    public void newGameBoard()
+    {
+        try{ 
+            title.setValue("Width and Height\nBelow 101 and above 4");
+            title.setFontSize(titleOffset*5);
+            do{
+                width = Integer.parseInt(ask("Input width"));
+                height = Integer.parseInt(ask("Input height"));
+                title.setValue("MUST BE\nBelow 101 and above 4");
+            }while(width < 5 || width > 100 || height < 5 || height > 100);
+        }
+        catch (Exception ex){
+            System.out.println("Issue with input. Please try again.");
+        }
+        if (width > 80)
+            titleOffset = 8;
+        else if (width > 60)
+            titleOffset = 7;
+        else if (width > 40)
+            titleOffset = 6;
+        else if (width > 20)
+            titleOffset = 5;
+        else
+            titleOffset = 4;
+        setWorld(new MinesweeperBoard(width, height, titleOffset));
+    }
     public void reset()
     {
         removeObjects(getObjects(Cell.class));
-        showText(null, (width/2), (height/2));
+        title.setValue("Minesweeper");
+        title.setFontSize(width*5/3);
         CreateCells();
         GenerateMines();
         playGame=true;
@@ -176,7 +209,8 @@ public class MinesweeperBoard extends World
         if (win){
             playGame = false;
             revealMines();
-            showText("Great Game!", (width/2), (height/2));
+            title.setValue("Great Game");
+            title.setFontSize(width*5/3);
             stop();
         }
     }
@@ -184,7 +218,8 @@ public class MinesweeperBoard extends World
     {
         playGame = false;
         revealMines();
-        showText("Game Over", (width/2), (height/2));
+        title.setValue("Game Over");
+        title.setFontSize(width*5/3);
         stop();
     }
 }
