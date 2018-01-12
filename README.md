@@ -1,9 +1,9 @@
 # Java-Minesweeper
 Classic game of Minesweeper created in Java using Greenfoot.
 
-VERSION: v1.1
+VERSION: v1.2
 
-DATE: 1/8/2018
+DATE: 1/11/2018
 
 AUTHORS: Noah Keck
 
@@ -26,3 +26,5 @@ AUTHORS: Noah Keck
     To win, never click on any of the hidden mines and flag all the mines.
     
     Pressing the space bar at any time during the game will reset the board.
+    Pressing the letter "b" will reset the board using black/white images.
+    Pressing the letter "c" will reset the board using colored images.
