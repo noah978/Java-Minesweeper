@@ -13,7 +13,7 @@ AUTHORS: Noah Keck
     Then download this repository.
     Open the project.greenfoot file.
     Press the run button to start the game.
-    You can also edit the code by double-clicking on any of the sub-classes.
+    You can also use the built-in greenfoot editorw
     
     Alternatively, download and install the java software from https://java.com/en/download/
     Then download and open the Minesweeper.jar file.
