@@ -7,8 +7,8 @@ import java.util.ArrayList;
  * Write a description of class MyWorld here.
  * 
  * @Noah Keck
- * @v1.1
- * @1/8/2018
+ * @v1.2
+ * @1/11/2018
  */
 public class MinesweeperBoard extends World
 {
@@ -27,17 +27,24 @@ public class MinesweeperBoard extends World
     public static GreenfootImage SevenSquare;
     public static GreenfootImage EightSquare;
     
-    private int width;
-    private int height;
+    private int width, height, titleOffset;
     private ArrayList<ArrayList<Cell>> cells;
+    private Label title;
     public boolean playGame, isBlack;
-    
+    /**
+     * In order to create a square field, the height needs to be equivalent to the width + title offset
+     */
     public MinesweeperBoard()
     {    
-        super(30, 30, 16);
-        width=30;
-        height=30;
-        isBlack=true;
+        super(20, 24, 16);
+        titleOffset=4;
+        width=this.getWidth();
+        height=this.getHeight()-titleOffset;
+        
+        title = new Label("Welcome to Minesweeper", width*3/2);
+        addObject(title, width/2, titleOffset - 3);
+        isBlack=false;
+        
         LoadContent();
         CreateCells();
         GenerateMines();
@@ -47,13 +54,23 @@ public class MinesweeperBoard extends World
     {
         if (playGame)
             checkWin();
-        if (Greenfoot.isKeyDown("space"))
+        if (isKeyDown("space"))
             reset();
+        if (isKeyDown("c")){
+            isBlack=false;
+            LoadContent();
+            reset();
+        }
+        if (isKeyDown("b")){
+            isBlack=true;
+            LoadContent();
+            reset();
+        }
     }
     public void reset()
     {
         removeObjects(getObjects(Cell.class));
-        //remove words
+        showText(null, (width/2), (height/2));
         CreateCells();
         GenerateMines();
         playGame=true;
@@ -106,14 +123,14 @@ public class MinesweeperBoard extends World
         for (int x=0; x<width; x++){
             for (int y=0; y<height; y++){
                 cells.get(x).add(new Cell());
-                addObject(cells.get(x).get(y), x, y);
+                addObject(cells.get(x).get(y), x, y + titleOffset);
             }
         }
     }
     public void revealZeros(int x, int y) {
-        if (x < 0 || x > width-1 || y < 0 || y > height-1)
+        if (x < 0 || x > width-1 || y < 0 + titleOffset || y > height-1 + titleOffset)
             return; // check for bounds
-        Cell temp = cells.get(x).get(y);
+        Cell temp = cells.get(x).get(y - titleOffset);
         if (temp.findPublicNumber() == 0 && temp.cellType.equals("normal")) {
             temp.setCell("clicked");
             temp.setImage(ClickedSquare);

@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Label
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Label\ here.\r\n\ \r\n\ @Noah\ Keck\r\n\ @v1.0\r\n\ @1/10/2018\r\n
+comment1.params=value\ fontSize
+comment1.target=Label(java.lang.String,\ int)
+comment1.text=\r\n\ \r\n
+comment2.params=value\ fontSize
+comment2.target=Label(int,\ int)
+comment2.text=\r\n\ \r\n
+comment3.params=value
+comment3.target=void\ setValue(java.lang.String)
+comment3.text=\r\n\ \r\n
+comment4.params=value
+comment4.target=void\ setValue(int)
+comment4.text=\r\n\ \r\n
+comment5.params=fontSize
+comment5.target=void\ setFontSize(int)
+comment5.text=\r\n\ \r\n
+comment6.params=newColor
+comment6.target=void\ setLineColor(greenfoot.Color)
+comment6.text=\r\n\ \r\n
+comment7.params=newColor
+comment7.target=void\ setFillColor(greenfoot.Color)
+comment7.text=\r\n\ \r\n
+comment8.params=
+comment8.target=void\ updateImage()
+numComments=9
