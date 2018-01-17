@@ -66,11 +66,13 @@ public class Cell extends Actor
     private void findNumber()
     {
         int number = findPublicNumber();
-        if (number>0)
+        if (number>0){
             assignNumberImage(number);
+            cellType="clicked";
+            board.incScore();
+        }
         else
             board.revealZeros(this.getX(), this.getY());
-        cellType="clicked";
     }
     public void assignNumberImage(int number)
     {

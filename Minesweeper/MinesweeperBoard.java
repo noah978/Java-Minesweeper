@@ -3,6 +3,7 @@ import static greenfoot.Greenfoot.*;
 import java.util.List;
 import java.util.ArrayList;
 
+
 /**
  * Write a description of class MyWorld here.
  * 
@@ -27,9 +28,10 @@ public class MinesweeperBoard extends World
     public static GreenfootImage SevenSquare;
     public static GreenfootImage EightSquare;
     
-    private int width, height, titleOffset;
+    private long startTime;
+    private int width, height, titleOffset, scoreCount;
     private ArrayList<ArrayList<Cell>> cells;
-    private Label title;
+    private Label title, score, timer;
     public boolean playGame, isBlack;
     /**
      * The default values for the game board are stored in this constructor.
@@ -45,8 +47,14 @@ public class MinesweeperBoard extends World
         this.width=width;
         this.height=height;
         
-        title=new Label("Welcome to Minesweeper", width*3/2);
+        title=new Label("Minesweeper", width);
         addObject(title, width/2, titleOffset/2-1);
+        timer=new Label(0, width);
+        addObject(timer, width-3, titleOffset/2-1);
+        score=new Label(0, width);
+        addObject(score, 3, titleOffset/2-1);
+        
+        scoreCount=0;
         isBlack=false;
         
         LoadContent();
@@ -56,8 +64,13 @@ public class MinesweeperBoard extends World
     }
     public void act()
     {
-        if (playGame)
+        if (startTime == 0)
+            startTime=System.nanoTime();
+        if (playGame){
             checkWin();
+            timer.setValue((int)((System.nanoTime()-startTime)/1000000000));
+            score.setValue(String.format("%,d",scoreCount));
+        }
         if (isKeyDown("enter"))
             newGameBoard();
         if (isKeyDown("space"))
@@ -103,9 +116,10 @@ public class MinesweeperBoard extends World
     {
         removeObjects(getObjects(Cell.class));
         title.setValue("Minesweeper");
-        title.setFontSize(width*5/3);
+        title.setFontSize(width);
         CreateCells();
         GenerateMines();
+        startTime=System.nanoTime();
         playGame=true;
     }
     private void LoadContent()
@@ -175,10 +189,12 @@ public class MinesweeperBoard extends World
             revealZeros( x+1, y-1 );
             revealZeros( x, y+1 );
             revealZeros( x-1, y+1 );
+            incScore();
         }
         else if (temp.cellType.equals("normal")){
             temp.setCell("clicked");
             temp.assignNumberImage(temp.findPublicNumber());
+            incScore();
             return;
         }
         else
@@ -210,7 +226,9 @@ public class MinesweeperBoard extends World
             playGame = false;
             revealMines();
             title.setValue("Great Game");
-            title.setFontSize(width*5/3);
+            title.setFontSize(width);
+            scoreCount+=1000;
+            score.setValue(String.format("%,d",scoreCount));
             stop();
         }
     }
@@ -219,7 +237,11 @@ public class MinesweeperBoard extends World
         playGame = false;
         revealMines();
         title.setValue("Game Over");
-        title.setFontSize(width*5/3);
+        title.setFontSize(width);
         stop();
+    }
+    public void incScore()
+    {
+        scoreCount+=5;
     }
 }
