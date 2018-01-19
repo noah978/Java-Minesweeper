@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * Write a description of class MyWorld here.
  * 
  * @Noah Keck
- * @v1.3
- * @1/11/2018
+ * @v1.4
+ * @1/19/2018
  */
 public class MinesweeperBoard extends World
 {
@@ -68,7 +68,7 @@ public class MinesweeperBoard extends World
             startTime=System.nanoTime();
         if (playGame){
             checkWin();
-            timer.setValue((int)((System.nanoTime()-startTime)/1000000000));
+            timer.setValue(String.format("%,d",(System.nanoTime()-startTime)/1000000000));
             score.setValue(String.format("%,d",scoreCount));
         }
         if (isKeyDown("enter"))
