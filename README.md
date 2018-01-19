@@ -1,9 +1,9 @@
 # Java-Minesweeper
 Classic game of Minesweeper created in Java using Greenfoot.
 
-VERSION: v1.3
+VERSION: v1.4
 
-DATE: 1/11/2018
+DATE: 1/19/2018
 
 AUTHORS: Noah Keck
 
@@ -31,4 +31,7 @@ AUTHORS: Noah Keck
     Pressing the letter "b" will reset the board using black/white images.
     Pressing the letter "c" will reset the board using colored images.
     
-    When setting the the board dimensions, only values between 5-100 are allowed.
+    When setting the the board dimensions, only values 5-100 are allowed.
+    
+    The number to the left of the title is your score, The number to the right is the timer (in seconds).
+    Each revealed square is 5 points, each completed puzzle is worth 1,000.
