@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * Write a description of class MyWorld here.
  * 
  * @Noah Keck
- * @v1.4.1
- * @2/4/2018
+ * @v1.5
+ * @2/5/2018
  */
 public class MinesweeperBoard extends World
 {
