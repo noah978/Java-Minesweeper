@@ -5,8 +5,8 @@ import java.util.List;
  * Write a description of class Cells here.
  * 
  * @Noah Keck
- * @v1.4
- * @1/19/2018
+ * @v1.4.1
+ * @2/4/2018
  */
 public class Cell extends Actor
 {
@@ -38,13 +38,17 @@ public class Cell extends Actor
                     setImage(board.ClickedSquare);
                     findNumber();
                 }
-                else if (cellType.equals("flagged") && ms.getButton()==3 && Greenfoot.mouseClicked(this)){
+                else if (cellType.equals("question") && ms.getButton()==3 && Greenfoot.mouseClicked(this)){
                     setImage(board.GraySquare);
                     cellType="normal";
                 }
                 else if (cellType.equals("normal") && ms.getButton()==3 && Greenfoot.mouseClicked(this)){
                     setImage(board.Flagged);
                     cellType="flagged";
+                }
+                else if ((cellType.equals("flagged") || cellType.equals("flaggedMine")) && ms.getButton()==3 && Greenfoot.mouseClicked(this)){
+                    setImage(board.QuestionMark);
+                    cellType="question";
                 }
                 else if (cellType.equals("mine") && ms.getButton()==1 && Greenfoot.mouseClicked(this)){
                     setImage(board.RedMine);

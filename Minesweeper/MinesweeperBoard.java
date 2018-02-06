@@ -8,14 +8,15 @@ import java.util.ArrayList;
  * Write a description of class MyWorld here.
  * 
  * @Noah Keck
- * @v1.4
- * @1/19/2018
+ * @v1.4.1
+ * @2/4/2018
  */
 public class MinesweeperBoard extends World
 {
     public static GreenfootImage GraySquare;
     public static GreenfootImage ClickedSquare;
     public static GreenfootImage RedMine;
+    public static GreenfootImage QuestionMark;
     public static GreenfootImage Flagged;
     public static GreenfootImage Mine;
     public static GreenfootImage DefusedMine;
@@ -128,6 +129,7 @@ public class MinesweeperBoard extends World
             GraySquare=new GreenfootImage("BW-GraySquareNormal.png");
             ClickedSquare=new GreenfootImage("BW-DepressedGraySquare.png");
             RedMine=new GreenfootImage("BW-RedMine.png");
+            QuestionMark=new GreenfootImage("BW-QuestionMark.png");
             Flagged=new GreenfootImage("BW-FlaggedSquare.png");
             Mine=new GreenfootImage("BW-MineSquare.png");
             DefusedMine= new GreenfootImage("BW-NotMine.png");
@@ -144,6 +146,7 @@ public class MinesweeperBoard extends World
             GraySquare=new GreenfootImage("GraySquareNormal.png");
             ClickedSquare=new GreenfootImage("DepressedGraySquare.png");
             RedMine=new GreenfootImage("RedMine.png");
+            QuestionMark=new GreenfootImage("QuestionMark.png");
             Flagged=new GreenfootImage("FlaggedSquare.png");
             Mine=new GreenfootImage("MineSquare.png");
             DefusedMine= new GreenfootImage("NotMine.png");
@@ -220,7 +223,7 @@ public class MinesweeperBoard extends World
         boolean win = true;
         for (ArrayList<Cell> cellArray : cells)
             for (Cell temp : cellArray)
-                if (temp.cellType.equals("mine"))
+                if (temp.cellType.equals("mine") || temp.cellType.equals("normal") || temp.cellType.equals("flagged"))
                     win = false;
         if (win){
             playGame = false;
@@ -229,7 +232,7 @@ public class MinesweeperBoard extends World
             title.setFontSize(width);
             scoreCount+=1000;
             score.setValue(String.format("%,d",scoreCount));
-            stop();
+            //stop();
         }
     }
     public void GameOver()
@@ -238,7 +241,7 @@ public class MinesweeperBoard extends World
         revealMines();
         title.setValue("Game Over");
         title.setFontSize(width);
-        stop();
+        //stop();
     }
     public void incScore()
     {
